@@ -1,0 +1,12 @@
+.tile {
+    flex-basis: 30%;
+    background-color: #000000;
+}
+
+.null {
+    background-color: #F6908E
+}
+
+.permFlipped, .flipped{
+    background-color: #EEDCCE
+}
