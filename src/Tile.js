@@ -1,9 +1,11 @@
 import './Tile.css'
 
-export default function Tile({value, status, onClick}) {
+function Tile({value, status, onClickFunc}) {
     return (
-        <div class="tile {status}" onClick={onClick}>
+        <div className={"tile "+ status} onClick={onClickFunc}>
             <h1>{value}</h1>
         </div>
     )
 }
+
+export default Tile;
