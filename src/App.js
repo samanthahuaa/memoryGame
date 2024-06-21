@@ -7,29 +7,31 @@ function App() {
   const [score, setScore] = useState(0);
   const [tiles, setTiles] = useState([{value: 1, status: null}, {value: 1, status: null}, {value: 2, status: null}, {value: 2, status: null}, {value: 3, status: null}, {value: 3, status: null}]);
 
-  function tileOnClick(status, value) {
+  function tileOnClick(id, status, value) {
     console.log("clicked");
     console.log(status);
     console.log(value);
     if (status !== "permFlipped") {
-      if (status === "flipped") { 
-        status = null;
+      let tempTiles = structuredClone(tiles);
+      if (status === "flipped") {
+        tempTiles[id].status = null
         setfirstCard(null);
       } else {
-        status = "flipped";
-        checkMatch(value);
+        tempTiles[id].status = "flipped";
+        checkMatch(id, value);
       }
+      setTiles(tempTiles);
     }
     console.log(status);
     console.log("done")
   }
   
-  function checkMatch(inputValue) {
+  function checkMatch(id, inputValue) {
     if (firstCard == null) {
-      setfirstCard(inputValue);
+      setfirstCard({value: inputValue, id: id});
     } else {
       let tempTiles = structuredClone(tiles);
-      if (firstCard === inputValue) {
+      if (firstCard.value === inputValue && id !== firstCard.id) {
         setScore(score + 1);
         for (let i=0; i<tempTiles.length; i++) {
           if (tempTiles[i].value === inputValue) {
@@ -57,13 +59,13 @@ function App() {
       <div className="board">
         {tiles.map((tile, index) => {
           return (
-            <Tile key={index} value={tile.value} status={tile.status} onClickFunc={() => tileOnClick(tile.status, tile.value)}/>
+            <Tile key={index} value={tile.value} status={tile.status} onClickFunc={() => tileOnClick(index, tile.status, tile.value)}/>
           )
           
         })}
       </div>
       <h2>Score: {score}</h2>
-      <h2>firstCard: {firstCard}</h2>
+      {/* <h2>firstCard: {firstCard}</h2> */}
     </div>
   );
 }
