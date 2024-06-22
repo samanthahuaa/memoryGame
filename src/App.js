@@ -5,7 +5,7 @@ import Tile from './Tile'
 function App() {
   const [firstCard, setfirstCard] = useState(null);
   const [score, setScore] = useState(0);
-  const [tiles, setTiles] = useState([{value: 1, status: null}, {value: 1, status: null}, {value: 2, status: null}, {value: 2, status: null}, {value: 3, status: null}, {value: 3, status: null}]);
+  const [tiles, setTiles] = useState([{value: "bear.jpg", status: null}, {value: "bear.jpg", status: null}, {value: "frog.jpg", status: null}, {value: "frog.jpg", status: null}, {value: "owl.png", status: null}, {value: "owl.png", status: null}]);
 
   function tileOnClick(id, status, value) {
     
