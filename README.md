@@ -1,8 +1,6 @@
 ## Future Developments
  - Hide the tiles when they are not flipped
  - Execute an animation of sorts to show the flipping of the tile
- - Declare that the user has won when the score is 3
-
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

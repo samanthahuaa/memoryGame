@@ -1,11 +1,17 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Tile from './Tile'
 
 function App() {
   const [firstCard, setfirstCard] = useState(null);
-  const [score, setScore] = useState(0);
   const [tiles, setTiles] = useState(randomizeArray());
+  const [score, setScore] = useState(0);
+  
+  useEffect(() => {
+    if (score === 3) {
+      alert("You won!")
+    }
+  }) 
 
   function randomizeArray() {
     let array = [{value: "bear.jpg", status: null}, {value: "bear.jpg", status: null}, {value: "frog.jpg", status: null}, {value: "frog.jpg", status: null}, {value: "owl.png", status: null}, {value: "owl.png", status: null}];
