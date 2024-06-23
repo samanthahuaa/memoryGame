@@ -4,7 +4,7 @@ import './Tile.css'
 function Tile({value, status, onClickFunc}) {
     return (
         <div className={"tile "+ status} onClick={onClickFunc}>
-            <img src={require(`./${value}`)} alt={"error, supposed to display "+value}/>
+            <img src={require(`./images/${value}`)} alt={"error, supposed to display "+value}/>
         </div>
     )
 }

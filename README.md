@@ -1,5 +1,4 @@
 ## Future Developments
- - Resize the tiles so they are all the same size and fit on the screen
  - Hide the tiles when they are not flipped
  - Execute an animation of sorts to show the flipping of the tile
  - Declare that the user has won when the score is 3
