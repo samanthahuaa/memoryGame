@@ -5,7 +5,25 @@ import Tile from './Tile'
 function App() {
   const [firstCard, setfirstCard] = useState(null);
   const [score, setScore] = useState(0);
-  const [tiles, setTiles] = useState([{value: "bear.jpg", status: null}, {value: "bear.jpg", status: null}, {value: "frog.jpg", status: null}, {value: "frog.jpg", status: null}, {value: "owl.png", status: null}, {value: "owl.png", status: null}]);
+  const [tiles, setTiles] = useState(randomizeArray());
+
+  function randomizeArray() {
+    let array = [{value: "bear.jpg", status: null}, {value: "bear.jpg", status: null}, {value: "frog.jpg", status: null}, {value: "frog.jpg", status: null}, {value: "owl.png", status: null}, {value: "owl.png", status: null}];
+    let currentIndex = array.length;
+
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+
+      // Pick a remaining element...
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+    return array;
+  }
 
   function tileOnClick(id, status, value) {
     
@@ -48,8 +66,18 @@ function App() {
     setTiles(tempTiles);
   }
 
+  function restart() {
+    if (score != 3) {
+      alert("You have not finished the game yet!")
+    } else {
+      setScore(0);
+      setTiles(randomizeArray());
+    }
+  }
+
   return (
     <div className="App">
+      <center><h2>Score: {score}</h2></center>
       <div className="board">
         {tiles.map((tile, index) => {
           return (
@@ -58,8 +86,7 @@ function App() {
           
         })}
       </div>
-      <h2>Score: {score}</h2>
-      {/* <h2>firstCard: {firstCard}</h2> */}
+      <button onClick={restart}>Restart</button>
     </div>
   );
 }
