@@ -1,6 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import Tile from './Tile'
+import Delay from './Delay'
 
 function App() {
   const [firstCard, setfirstCard] = useState(null);
@@ -48,10 +49,14 @@ function App() {
   function checkMatch(id, inputValue) {
     let tempTiles = structuredClone(tiles);
 
+    tempTiles[id].status = "flipped";
     if (firstCard == null) {
       setfirstCard({value: inputValue, id: id});
-      tempTiles[id].status = "flipped";
     } else {
+      //////////
+      //while (delay) {
+
+      //}
       if (firstCard.value === inputValue && id !== firstCard.id) {
         for (let i=0; i<tempTiles.length; i++) {
           if (tempTiles[i].value === inputValue) {
@@ -81,18 +86,27 @@ function App() {
     }
   }
 
+  function timeout(delay) {
+    return new Promise( res => setTimeout(res, delay) );
+  }
+
   return (
     <div className="App">
-      <center><h2>Score: {score}</h2></center>
-      <div className="board">
-        {tiles.map((tile, index) => {
-          return (
-            <Tile key={index} value={tile.value} status={tile.status} onClickFunc={() => tileOnClick(index, tile.status, tile.value)}/>
-          )
-          
-        })}
-      </div>
-      <button onClick={restart}>Restart</button>
+      <head>
+        <title>lil memory game</title>
+      </head>
+      <body>
+        <center><h2>Score: {score}</h2></center>
+        <div className="board">
+          {tiles.map((tile, index) => {
+            return (
+              <Tile key={index} value={tile.value} status={tile.status} onClickFunc={() => tileOnClick(index, tile.status, tile.value)}/>
+            )
+            
+          })}
+        </div>
+        <button onClick={restart}>Restart</button>
+      </body>
     </div>
   );
 }

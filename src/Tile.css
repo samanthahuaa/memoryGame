@@ -5,11 +5,20 @@
     /* text-align: center;  */
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
+    
+}
+
+.tile img {
+    visibility: hidden;
 }
 
 .permFlipped, .flipped{
     background-color: #EEDCCE;
+}
+
+.permFlipped img, .flipped img{
+    visibility: visible;
 }
 
 img {
